@@ -1,666 +1,487 @@
-{
- "DFFlagAcceleratorUpdateOnPropsAndValueTimeChange": "True",
- "DFFlagAddFieldsToServerReplicator": "True",
- "DFFlagAddMipPackMetadata": "True",
- "DFFlagAnchoredSendPositionUpdate2": "True",
- "DFFlagAnimatorEnableNewAdornments": "True",
- "DFFlagAnimatorPostProcessIK": "True",
- "DFFlagAnimatorThrottleRccEnabled": "true",
- "DFFlagAssetPreloadingUrlVersionEnabled2": "True",
- "DFFlagAudioEnableVolumetricPanningForMeshes": "True",
- "DFFlagAudioEnableVolumetricPanningForPolys": "True",
- "DFFlagAudioUseVolumetricPanning": "True",
- "DFFlagBaseNetworkMetrics": "False",
- "DFFlagBrowserTrackerIdTelemetryEnabled": "False",
- "DFFlagClampIncomingReplicationLag": "True",
- "DFFlagCollectAudioPluginTelemetry": "False",
- "DFFlagCSGv2AlwaysClusterPositions": "True",
- "DFFlagDataStore2NewVersionHeader": "True",
- "DFFlagDebugDisableProjectileOwnershipLock": "True",
- "DFFlagDebugDisableTelemetryAfterTest": "True",
- "DFFlagDebugDisableTimeoutDisconnect": "True",
- "DFFlagDebugGameServerHeaderBypass": "True",
- "DFFlagDebugLargeReplicatorDisableCompression": "True",
- "DFFlagDebugLargeReplicatorForceFullSend": "True",
- "DFFlagDebugPauseVoxelizer": "True",
- "DFFlagDebugPerfMode": "True",
- "DFFlagDebugPhysicsSenderDoesNotShrinkSimRadius": "True",
- "DFFlagDebugPVLOD0SerializeFullMatrix": "True",
- "DFFlagDebugRenderForceTechnologyVoxel": "True",
- "DFFlagDebugReportAnchoredSimBodyUpdatedFromSolver": "True",
- "DFFlagDebugSimUseManualTimestepMultiplier": "True",
- "DFFlagDisableDPIScale": "True",
- "DFFlagDisableFastLogTelemetry": "True",
- "DFFlagDSTelemetryV2ReplaceSeparator": "False",
- "DFFlagEmitSafetyTelemetryInCallbackEnable": "False",
- "DFFlagEnableControlRigIkTargets": "True",
- "DFFlagEnableFmodErrorsTelemetry": "False",
- "DFFlagEnableLightstepReporting2": "False",
- "DFFlagEnablePreloadAvatarAssets": "True",
- "DFFlagEnableSkipUpdatingGlobalTelemetryInfo2": "False",
- "DFFlagEnableSoundPreloading": "True",
- "DFFlagEnableTelemetryV2FRMStats": "False",
- "DFFlagEnableTexturePreloading": "True",
- "DFFlagEnableTunableClientReplicatorStatsForSessionTracking": "True",
- "DFFlagESGamePerfMonitorEnabled": "False",
- "DFFlagFixHumanoidRootPartRaycasts": "True",
- "DFFlagFixMeshScale2": "True",
- "DFFlagGpuVsCpuBoundTelemetry": "False",
- "DFFlagGraphicsQualityUsageTelemetry": "False",
- "DFFlagHumanoidMassPropertiesNewLocation": "True",
- "DFFlagHumanoidReplicateSimulated2": "True",
- "DFFlagJointIrregularityOptimization": "True",
- "DFFlagMergeFakeInputEvents3": "True",
- "DFFlagMergeFakeInputEvents4": "True",
- "DFFlagNetworkHumanoidStatePropertyReplication3": "True",
- "DFFlagNetworkHumanoidStatePropertyReplicationWarmup": "True",
- "DFFlagNetworkUseZstdWrapper": "False",
- "DFFlagNonTeamCreateRemoteSaveValidatorMasterSwitchOptIn": "True",
- "DFFlagOnlyDecrementCompletenessIfReplicating": "True",
- "DFFlagOptimizeVRMatrices": "True",
- "DFFlagPerformanceControlEnableMemoryProbing3": "True",
- "DFFlagPerMipLoading": "True",
- "DFFlagPlayerHumanoidPropertyUpdateRestrict": "False",
- "DFFlagRakNetCalculateApplicationFeedback2": "False",
- "DFFlagRakNetDetectNetUnreachable": "True",
- "DFFlagRakNetDetectRecvThreadOverload": "True",
- "DFFlagRakNetEnablePoll": "True",
- "DFFlagRakNetUnblockSelectOnShutdownByWritingToSocket": "True",
- "DFFlagRakNetUseSlidingWindow4": "True",
- "DFFlagRccLoadSoundLengthTelemetryEnabled": "False",
- "DFFlagRemoveTelemetryFlushOnJobClose": "False",
- "DFFlagRenderLanczosSeparateAxis2": "True",
- "DFFlagRenderLanczosUpsampling2": "True",
- "DFFlagRenderLanczosUpsamplingNonRinging2": "True",
- "DFFlagRenderSmootherStepUpsampling": "True",
- "DFFlagReplicateCreateToPlayer": "True",
- "DFFlagReplicatorCheckReadTableCollisions": "True",
- "DFFlagReplicatorClientRemoteProfilerDumpRefactor": "True",
- "DFFlagReplicatorDisKickSize": "True",
- "DFFlagReplicatorSeparateVarThresholds": "True",
- "DFFlagReplicatorStopCleanup": "True",
- "DFFlagReportAssetRequestV1Telemetry": "False",
- "DFFlagReportRenderDistanceTelemetry": "False",
- "DFFlagRobloxTelemetryAddDeviceRAM": "False",
- "DFFlagRobloxTelemetryAddDeviceRAMPointsV2": "False",
- "DFFlagRobloxTelemetryV2PointEncoding": "False",
- "DFFlagSampleAndRefreshRakPing": "True",
- "DFFlagSchemaVersionEnable": "True",
- "DFFlagSendRenderFidelityTelemetry": "False",
- "DFFlagSimAdaptiveAdjustTimestepForControllerManager": "True",
- "DFFlagSimAdaptiveExplicitlyMarkInterpolatedAssemblies": "True",
- "DFFlagSimAdaptiveRemoveStaticMaxTimestepMultiplier2": "True",
- "DFFlagSimAdaptiveScaleCollisionParameters": "True",
- "DFFlagSimCSG3EnableNewAPIPluginUse": "True",
- "DFFlagSimDcdRefactorSetPhysics": "True",
- "DFFlagSimEnableAngularAccelerationConversionMethods": "True",
- "DFFlagSimEnableStepPhysics": "True",
- "DFFlagSimFixLegacyHumanoidRunWithAero": "True",
- "DFFlagSimGroundControllerIgnoreYVelocityInit": "False",
- "DFFlagSimHumanoidFirstPerson240hz": "True",
- "DFFlagSimOptimizeGeometryChangedAssemblies3": "True",
- "DFFlagSimOptimizeSetSize": "True",
- "DFFlagSimSmoothedRunningController2": "True",
- "DFFlagSimSolverImprovedPartialSleep": "True",
- "DFFlagSimSolverImprovedPartialSleepDefaultEnabled": "True",
- "DFFlagSimSolverSendPerfTelemetryToElasticSearch2": "False",
- "DFFlagSimStepPhysicsCheckTimeStep": "False",
- "DFFlagSimStepPhysicsImprovedSubStepping": "True",
- "DFFlagSolverStateReplicatedOnly2": "True",
- "DFFlagTaskSchedulerAvoidSleep": "True",
- "DFFlagTeleportClientAssetPreloadingDoingExperiment": "True",
- "DFFlagTeleportClientAssetPreloadingDoingExperiment2": "True",
- "DFFlagTeleportClientAssetPreloadingEnabledIXP": "True",
- "DFFlagTeleportClientAssetPreloadingEnabledIXP2": "True",
- "DFFlagTextureQualityOverrideEnabled": "True",
- "DFFlagTouchEventsUseCollisionGroupsDefaultEnabled": "True",
- "DFFlagUpdateBoundExtentsForHugeMixedReplicationComponents": "True",
- "DFFlagVoiceChatPossibleDuplicateSubscriptionsTelemetry": "False",
- "DFFlagWindowsWebViewTelemetryEnabled": "False",
- "DFIntAnalyticsCDNProbeInfluxPermyriad": "0",
- "DFIntAngularVelociryLimit": "360",
- "DFIntAnimationLodFacsDistanceMax": "0",
- "DFIntAnimationLodFacsDistanceMin": "0",
- "DFIntAnimationLodFacsVisibilityDenominator": "0",
- "DFIntAnimatorRetargetInterpolateFKCorrectionMaxAngleDeg": "360",
- "DFIntAnimatorRetargetInterpolateFKCorrectionMinAngleDeg": "0",
- "DFIntAnimatorRetargetSkipLowerBodyIKDistance10x": "0",
- "DFIntAnimatorThrottleMaxFramesToSkip": "0",
- "DFIntAssetCacheErrorLogHundredthsPercent": "2147483647",
- "DFIntAssetPreloading": "2147483645",
- "DFIntBadLogInfluxHundredthsPercentage": "0",
- "DFIntBandwidthManagerApplicationDefaultBps": "796850000",
- "DFIntBandwidthManagerDataSenderMaxWorkCatchupMs": "5",
- "DFIntBatchThumbnailResultsSizeCap": "200",
- "DFIntBufferCompressionLevel": "0",
- "DFIntBufferDataTotalLimit": "2147000000",
- "DFIntCachedPatchLoadDelayMilliseconds": "1",
- "DFIntCanHideGuiGroupId": "32380007",
- "DFIntCharacterLoadTime": "1",
- "DFIntCheckPVCachedRotVelThresholdPercent": "0",
- "DFIntCheckPVCachedVelThresholdPercent": "0",
- "DFIntCheckPVDifferencesForInterpolationMinVelThresholdStudsPerSecHundredth": "1",
- "DFIntCheckPVLinearVelocityIntegrateVsDeltaPositionThresholdPercent": "1",
- "DFIntCLI20390_2": "0",
- "DFIntCLI52064InfluxHundredthsPercentage": "100",
- "DFIntCLI96239ThrottleHundrethsPercent": "0",
- "DFIntClientFSRequestsReceivedThrottleHundredthsPercent": "2500",
- "DFIntClientFSRequestsTriggeredThrottleHundredthsPercent": "2500",
- "DFIntClientLightingTechnologyChangedTelemetryHundredthsPercent": "0",
- "DFIntClientNetworkInfluxHundredthsPercentage": "0",
- "DFIntClientPacketExcessMicroseconds": "1000",
- "DFIntClientPacketHealthyAllocationPercent": "50",
- "DFIntClientPacketMaxDelayMs": "0",
- "DFIntClientPacketMaxFrameMicroseconds": "200",
- "DFIntClientPacketMinMicroseconds": "1250",
- "DFIntClientReportLuaConnectionSignalsInfluxHundrethsPercentage": "50",
- "DFIntCliMaxChRcv": "2147483647",
- "DFIntCliMaxChSnd": "2147483647",
- "DFIntCliMaxPayloadRcv": "196000000",
- "DFIntCliMaxPayloadSnd": "196000000",
- "DFIntCliTcMaxPayloadRcv": "196000000",
- "DFIntCliTcMaxPayloadSnd": "196000000",
- "DFIntClusterCompressionLevel": "1",
- "DFIntClusterEstimatedCompressionRatioHundredths": "0",
- "DFIntClusterSenderMaxJoinBandwidthBps": "2147465500",
- "DFIntClusterSenderMaxUpdateBandwidthBps": "978500000",
- "DFIntCodecMaxIncomingPackets": "2147483647",
- "DFIntCodecMaxOutgoingFrames": "2147483647",
- "DFIntCommonQueuePreserializeParallelBatchSize": "150",
- "DFIntConnectionMTUSize": "1472",
- "DFIntContentProviderPreloadHangTelemetryHundredthsPercentage": "0",
- "DFIntCSGLevelOfDetailSwitchingDistance": "0",
- "DFIntCSGLevelOfDetailSwitchingDistanceL12": "0",
- "DFIntCSGLevelOfDetailSwitchingDistanceL23": "0",
- "DFIntCSGLevelOfDetailSwitchingDistanceL34": "0",
- "DFIntDataSenderMaxBandwidthBpsMultiplier": "196850000",
- "DFIntDataSenderRate": "30",
- "DFIntDebugCLI52064ReceiveUS": "0",
- "DFIntDebugDefaultTargetWorldStepsPerFrame": "-2147483648",
- "DFIntDebugDynamicRenderKiloPixels": "922",
- "DFIntDebugFRMQualityLevelOverride": "0",
- "DFIntDebugRestrictGCDistance": "1",
- "DFIntDebugSendDistInSteps": "-2147483648",
- "DFIntDynamicFastVariableReloaderTest3": "1",
- "DFIntFileCacheReserveSize": "1036372536",
- "DFIntGameNetCompressionLodByteBudgetThresholdPct": "0",
- "DFIntGameNetDontSendRedundantDeltaPositionMillionth": "0",
- "DFIntGameNetDontSendRedundantDeltaThresholdMillionth": "0",
- "DFIntGameNetDontSendRedundantNumTimes": "0",
- "DFIntGameNetPVHeaderLinearVelocityZeroCutoffExponent": "-1",
- "DFIntGameNetPVHeaderRotationalVelocityZeroCutoffExponent": "-1",
- "DFIntGameNetPVHeaderRotationOrientIdToleranceExponent": "-1",
- "DFIntGameNetPVHeaderTranslationZeroCutoffExponent": "-1",
- "DFIntGraphicsOptimizationModeFRMFrameRateTarget": "100",
- "DFIntGraphicsOptimizationModeMaxFrameTimeTargetMs": "25",
- "DFIntGraphicsOptimizationModeMinFrameTimeTargetMs": "0",
- "DFIntGraphicsOptimizationModePerformanceScalePercent": "10000000",
- "DFIntHttpBatchApi_cacheDelayMs": "0",
- "DFIntHttpBatchApi_maxWaitMs": "0",
- "DFIntHttpBatchApi_minWaitMs": "0",
- "DFIntHttpCacheAsyncWriterMaxPendingSize": "1036372536",
- "DFIntHttpCacheCleanScheduleAfterMs": "1036372536",
- "DFIntHttpCacheCleanUpToAvailableSpaceMiB": "1036372536",
- "DFIntHttpCacheEvictionExemptionMapMaxSize": "1036372536",
- "DFIntHttpCachePerfHundredthsPercent": "1036372536",
- "DFIntHttpCachePerfSamplingRate": "1036372536",
- "DFIntHttpCacheReportSlowWritesMinDuration": "1036372536",
- "DFIntHumanoidFloorManualFrictionVelocityMultValue": "500",
- "DFIntHumanoidStateChangeEventIngestThrottleHundrethsPercent": "0",
- "DFIntIncorrectlyPausedReplicationHundredthsPercentage": "0",
- "DFIntInfluxDbLog": "0",
- "DFIntInfluxTrace": "0",
- "DFIntInitialAccelerationLatencyMultTenths": "1",
- "DFIntInterpolationDtLimitForLod": "1",
- "DFIntInterpolationFramePositionThresholdMillionth": "10",
- "DFIntInterpolationFrameRotVelocityThresholdMillionth": "10",
- "DFIntInterpolationFrameVelocityThresholdMillionth": "10",
- "DFIntInterpolationMinAssemblyCount": "1",
- "DFIntJoinDataCompressionLevel": "0",
- "DFIntJoinDataItemEstimatedCompressionRatioHundreths": "0",
- "DFIntLargePacketQueueSizeCutoffMB": "1000",
- "DFIntLightstepHTTPTransportHundredthsPercent2": "0",
- "DFIntMacWebViewTelemetryThrottleHundredthsPercent": "0",
- "DFIntMaxAcceptableUpdateDelay": "1",
- "DFIntMaxActiveAnimationTracks": "2147483647",
- "DFIntMaxAverageFrameDelayExceedFactor": "0",
- "DFIntMaxClientSimulationRadius": "2147000000",
- "DFIntMaxDataOutJobScaling": "30",
- "DFIntMaxDataPacketPerSend": "2147483647",
- "DFIntMaxDataPayloadSize": "2147483647",
- "DFIntMaxDebugNetworkUpdateTimestamps": "95",
- "DFIntMaxFrameBufferSize": "-1",
- "DFIntMaxMissedWorldStepsRemembered": "-2147483648",
- "DFIntMaxNumReplicatorsToDisconnectPerFrame": "2000",
- "DFIntMaxProcessPacketsJobScaling": "2147483647",
- "DFIntMaxProcessPacketsStepsAccumulated": "0",
- "DFIntMaxProcessPacketsStepsPerCyclic": "2147483647",
- "DFIntMaxReceiveToDeserializeLatencyMilliseconds": "10",
- "DFIntMegaReplicatorNetworkQualityProcessorUnit": "10",
- "DFIntMemCacheMaxCapacityMB": "1036372536",
- "DFIntMemoryUtilityCurveBaseHundrethsPercent": "2500",
- "DFIntMemoryUtilityCurveNumSegments": "0",
- "DFIntMinClientSimulationRadius": "2147000000",
- "DFIntMinimalNetworkPrediction": "1",
- "DFIntMinimalSimRadiusBuffer": "2147000000",
- "DFIntMinimumNumberMechanismsForMT": "1",
- "DFIntNetworkInDeserializeLimitGameplayMsClient": "0",
- "DFIntNetworkInDeserializeLimitGameplayMsRcc": "3",
- "DFIntNetworkInProcessLimitGameplayMsClient": "0",
- "DFIntNetworkLatencyTolerance": "10",
- "DFIntNetworkObjectStatsCollectorGlobalCapThrottleHP": "5975",
- "DFIntNetworkPrediction": "-1",
- "DFIntNetworkQualityResponderMaxWaitTime": "1",
- "DFIntNetworkQualityResponderUnit": "10",
- "DFIntNetworkSchemaCompressionRatio": "0",
- "DFIntNetworkStreamingGCMaxMicroSecondLimit": "3250",
- "DFIntNetworkStreamInitSize": "4096",
- "DFIntNetworkStreamMinGrowSize": "4096",
- "DFIntNewRunningBaseAltitudeD": "195",
- "DFIntNumAssetsMaxToPreload": "2147483647",
- "DFIntNumFramesAllowedToBeAboveError": "0",
- "DFIntOptimizePingThreshold": "-1",
- "DFIntParallelAdaptiveInterpolationBatchCount": "1",
- "DFIntPerformanceControlFrameTimeMax": "1",
- "DFIntPerformanceControlFrameTimeMaxUtility": "-1",
- "DFIntPerformanceControlReportingPeriodInMs": "850",
- "DFIntPerformanceControlTextureQualityBestUtility": "-1",
- "DFIntPerformanceControlTextureQualityExponentTenThousandths": "0",
- "DFIntPhysicsEMAInverseSmoothingFactor": "512",
- "DFIntPhysicsEMAInverseSmoothingFactorThrottling": "128",
- "DFIntPhysicsNOUCountHundredth": "2147483647",
- "DFIntPhysicsSenderMaxBandwidthBps": "2147483647",
- "DFIntPlayerNetworkUpdateQueueSize": "1",
- "DFIntPlayerNetworkUpdateRate": "60",
- "DFIntPolicyServiceReportDetailIsNotSubjectToChinaPoliciesHundredthsPercentage": "10000",
- "DFIntPreloadAvatarAssets": "2147483645",
- "DFIntQosMaxEvents": "2147483647",
- "DFIntQosPoolCbcTimeout": "0",
- "DFIntRakNetApplicationFeedbackInitialSpeedBPS": "2147483647",
- "DFIntRakNetApplicationFeedbackMaxSpeedBPS": "2147483647",
- "DFIntRakNetApplicationFeedbackScaleUpFactorHundredthPercent": "0",
- "DFIntRakNetApplicationFeedbackScaleUpThresholdPercent": "0",
- "DFIntRaknetBandwidthInfluxHundredthsPercentageV2": "10000",
- "DFIntRaknetBandwidthPingSendEveryXSeconds": "-1",
- "DFIntRakNetClockDriftAdjustmentPerPingMillisecond": "2147483647",
- "DFIntRakNetConnectionStartWindow_HundredthsPercentage": "0",
- "DFIntRakNetLoopMs": "0",
- "DFIntRakNetMinAckGrowthPercent": "100",
- "DFIntRakNetMtuValue1InBytes": "1472",
- "DFIntRakNetMtuValue2InBytes": "1472",
- "DFIntRakNetMtuValue3InBytes": "1472",
- "DFIntRakNetNakResendDelayMs": "0",
- "DFIntRakNetNakResendDelayMsMax": "0",
- "DFIntRakNetNakResendDelayRttPercent": "0",
- "DFIntRakNetPacketTracingMinMTUSize": "1472",
- "DFIntRakNetPingFrequencyMillisecond": "2147483647",
- "DFIntRakNetResendMaxThresholdTimeInUs": "100000",
- "DFIntRakNetResendMinThresholdTimeInUs": "10000",
- "DFIntRakNetResendRttMultiple": "1",
- "DFIntRakNetResendScaleBackFactorHundredthsPercent": "1000000",
- "DFIntRakNetSelectTimeoutMs": "1",
- "DFIntRakNetUseSlidingWindow2_minRtt": "1000000",
- "DFIntRccMaxChRcv": "196000000",
- "DFIntRccMaxChSnd": "196000000",
- "DFIntRccMaxPayloadRcv": "196000000",
- "DFIntRccMaxPayloadSnd": "196000000",
- "DFIntRCCMergeSameTouchesTimeoutInMS": "1",
- "DFIntRCCNetLatency": "1",
- "DFIntRccTcMaxPayloadRcv": "196000000",
- "DFIntRccTcMaxPayloadSnd": "196000000",
- "DFIntRenderClampRoughnessMax": "640000000",
- "DFIntRenderingThrottleDelayInMS": "1",
- "DFIntReplicationVariantKickLimitBytes": "2147483647",
- "DFIntReplicationVariantLimitHundredthPercent": "0",
- "DFIntReplicatorCountLimitInfluxHundrethsPercentage": "0",
- "DFIntReplicatorVariantContainerCountLimit": "2147483647",
- "DFIntReplicatorVariantKickRateLimitMax": "2147483647",
- "DFIntReportCacheDirSizesHundredthsPercent": "1036372536",
- "DFIntReportDeviceInfoRate": "0",
- "DFIntReportNetworkSyncMemoryUsage2EveryXSeconds": "750",
- "DFIntReportOutputDeviceInfoEventRateHundredthsPercentage": "0",
- "DFIntReportOutputDeviceInfoRateHundredthsPercentage": "0",
- "DFIntReportRecordingDeviceInfoEventRateHundredthsPercentage": "0",
- "DFIntReportRecordingDeviceInfoRateHundredthsPercentage": "0",
- "DFIntRobloxTelemetrySharedStringReplicationPointsThrottleHundredthsPercent": "10",
- "DFIntRunningBaseOrientationP": "450",
- "DFIntRuntimeConcurrency": "2147483647",
- "DFIntRuntimeMaxNumOfConditions": "1000000",
- "DFIntRuntimeMaxNumOfLatches": "1000000",
- "DFIntRuntimeMaxNumOfMutexes": "1000000",
- "DFIntRuntimeMaxNumOfSchedulers": "1000000",
- "DFIntRuntimeMaxNumOfSemaphores": "1000000",
- "DFIntRuntimeMaxNumOfThreads": "1000000",
- "DFIntS2PhysicsSenderRate": "240",
- "DFIntSchemaNetworkStreamSize": "125300",
- "DFIntSendGameServerDataMaxLen": "2147483647",
- "DFIntSendItemLimit": "64",
- "DFIntSendRakNetStatsInterval": "2147465500",
- "DFIntServerBandwidthPlayerSampleRate": "2147465500",
- "DFIntServerBandwidthPlayerSampleRateFacsOverride": "2147465500",
- "DFIntServerFramesBetweenJoins": "1",
- "DFIntServerPhysicsUpdateRate": "-1",
- "DFIntServerRakNetBandwidthPlayerSampleRate": "2147465500",
- "DFIntServerTickRate": "-1",
- "DFIntSessionIdlePeriod": "125",
- "DFIntSignalRCoreHandshakeTimeoutMs": "3000",
- "DFIntSignalRCoreHubBaseRetryMs": "10",
- "DFIntSignalRCoreHubMaxBackoffMs": "5000",
- "DFIntSignalRCoreKeepAlivePingPeriodMs": "25",
- "DFIntSignalRCoreRpcQueueSize": "2147483647",
- "DFIntSignalRCoreServerTimeoutMs": "20000",
- "DFIntSignalRCoreTimerMs": "50",
- "DFIntSignalRHubConnectionBaseRetryTimeMs": "100",
- "DFIntSignalRHubConnectionHeartbeatTimerRateMs": "1000",
- "DFIntSimAdaptiveExtraIterations": "32",
- "DFIntSimAdaptiveHumanoidPDControllerSubstepMultiplier": "2",
- "DFIntSimArbiterCFLLengthScaleThou": "2147483647",
- "DFIntSimDesiredVelocityDiffCutoff": "0",
- "DFIntSimExplicitlyCappedTimestepMultiplier": "2147483647",
- "DFIntSimOwnedNOUCountThresholdMillionth": "2147483647",
- "DFIntSoundServiceCacheCleanupMaxAgeDays": "1036372536",
- "DFIntTargetTimeDelayFacctorTenths": "0",
- "DFIntTaskSchedulerJobInGameExecFreqMax": "2147483647",
- "DFIntTaskSchedulerJobInGameExecFreqMin": "2147483647",
- "DFIntTaskSchedulerJobInitExecFreqMax": "2147483647",
- "DFIntTaskSchedulerJobInitExecFreqMin": "2147483647",
- "DFIntTaskSchedulerTargetFps": "9999",
- "DFIntTeleportClientAssetPreloadingHundredthsPercentage": "100000",
- "DFIntTeleportClientAssetPreloadingHundredthsPercentage2": "100000",
- "DFIntTeleportRetryTimes": "5",
- "DFIntTextureQualityOverride": "0",
- "DFIntThirdPartyInMemoryCacheCapacity": "1036372536",
- "DFIntThrottledVelocityThresholdTenths": "2000",
- "DFIntThrottlingPredictionAccelerationHoldThousandth": "1",
- "DFIntTimestepArbiterAccelerationModelFactorThou": "2147483647",
- "DFIntTimestepArbiterAngAccelerationThresholdThou": "2147483647",
- "DFIntTimestepArbiterBoundingBoxIntersectionThresholdThou1": "2147483647",
- "DFIntTimestepArbiterBoundingBoxIntersectionThresholdThou2": "2147483647",
- "DFIntTimestepArbiterCharacteristicLengthThou": "2147483647",
- "DFIntTimestepArbiterCollidingHumanoidTsm": "2147483647",
- "DFIntTimestepArbiterConditionNumberThresholdThou": "2147483647",
- "DFIntTimestepArbiterHumanoidLinearVelThreshold": "2147483647",
- "DFIntTimestepArbiterHumanoidTurningVelThreshold": "2147483647",
- "DFIntTimestepArbiterOmegaThou": "2147483647",
- "DFIntTimestepArbiterThresholdCFLThou": "2147483647",
- "DFIntTrackCountryRegionAPIHundredthsPercent": "10000",
- "DFIntUserIdPlayerNameCacheLifetimeSeconds": "1036372536",
- "DFIntVoiceChatTaskStatsTelemetryThrottleHundrethsPercent": "0",
- "DFIntWaitOnRecvFromLoopEndedMS": "10",
- "DFIntWaitOnUpdateNetworkLoopEndedMS": "100",
- "DFIntWarpFactor": "2147483648",
- "DFIntWindowsWebViewTelemetryThrottleHundredthsPercent": "0",
- "DFIntWorldStepMax": "-2147483648",
- "DFIntWorldStepsOffsetAdjustRate": "2147483648",
- "DFStringAltHttpPointsReporterUrl": "null",
- "DFStringAltTelegrafHTTPTransportUrl": "null",
- "DFStringCrachUploadToBacktraceMacPlayerToken": "null",
- "DFStringCrashUploadToBacktraceBaseUrl": "null",
- "DFStringCrashUploadToBacktraceMacPlayerToken": "null",
- "DFStringCrashUploadToBacktraceWindowsPlayerToken": "null",
- "DFStringHttpPointsReporterUrl": "null",
- "DFStringLightstepHTTPTransportUrlHost": "null",
- "DFStringLightstepHTTPTransportUrlPath": "null",
- "DFStringLightstepToken": "null",
- "DFStringRobloxAnalyticsURL": "null",
- "DFStringTelegrafHTTPTransportUrl": "null",
- "DFStringTelemetryV2Url": "null",
- "FFlagAddDMLogging": "False",
- "FFlagAdServiceEnabled": "False",
- "FFlagAnimatePhysics": "False",
- "FFlagAnimationCurveDenseCacheEnabled3": "True",
- "FFlagAnimationStreamSourceUseRuntimeSyncPrims": "True",
- "FFlagAnimationStreamTrackUseRuntimeSyncPrims": "True",
- "FFlagAnimationTrackStepFix": "True",
- "FFlagAnimatorRetargetSkipAnkleModification": "False",
- "FFlagAnimatorRetargetSkipLowerBodyIK": "False",
- "FFlagAssetPreloadingIXP": "True",
- "FFlagAvatarUseRuntimeSyncPrims4": "True",
- "FFlagBetaBadgeLearnMoreLinkFormview": "False",
- "FFlagCanReplicateContentPropertiesServer": "True",
- "FFlagCanReplicateDecalContentPropertiesServer": "True",
- "FFlagCanReplicateSurfaceAppearanceContentPropertiesClient": "True",
- "FFlagCanReplicateSurfaceAppearanceContentPropertiesServer": "True",
- "FFlagCleanUpSeatWeld": "True",
- "FFlagCommitToGraphicsQualityFix": "True",
- "FFlagContentProviderPreloadHangTelemetry": "False",
- "FFlagControlBetaBadgeWithGuac": "False",
- "FFlagDebugCheckRenderThreading": "True",
- "FFlagDebugCrashReports": "False",
- "FFlagDebugDisableOTAMaterialTexture": "True",
- "FFlagDebugDisableTelemetryEphemeralCounter": "True",
- "FFlagDebugDisableTelemetryEphemeralStat": "True",
- "FFlagDebugDisableTelemetryEventIngest": "True",
- "FFlagDebugDisableTelemetryPoint": "True",
- "FFlagDebugDisableTelemetryV2Counter": "True",
- "FFlagDebugDisableTelemetryV2Event": "True",
- "FFlagDebugDisableTelemetryV2Stat": "True",
- "FFlagDebugDisplayFPS": "True",
- "FFlagDebugForceFSMCPULightCulling": "True",
- "FFlagDebugForceFutureIsBrightPhase2": "True",
- "FFlagDebugForceFutureIsBrightPhase3": "True",
- "FFlagDebugForceRegenerateSchemaBitStream": "True",
- "FFlagDebugGraphicsPreferD3D11": "True",
- "FFlagDebugGraphicsPreferD3D11FL10": "True",
- "FFlagDebugGraphicsPreferOpenGL": "True",
- "FFlagDebugGraphicsPreferVulkan": "True",
- "FFlagDebugNextGenRepAttributeRep": "True",
- "FFlagDebugNextGenReplicatorEnabledWriteCFrameColor": "True",
- "FFlagDebugRenderingSetDeterministic": "True",
- "FFlagDebugSkyGray": "True",
- "FFlagDebugUseCustomSimRadius": "True",
- "FFlagDebugUseCustomUnfilteredChat": "True",
- "FFlagDisablePostFx": "True",
- "FFlagEnableFPSAndFrameTime": "True",
- "FFlagEnableHumanoidLuaSideCaching": "False",
- "FFlagEnableInGameMenuDurationLogger": "False",
- "FFlagEnableLightAttachToPart": "False",
- "FFlagEnableLuaVoiceChatAnalyticsV2": "False",
- "FFlagEnableNewHeapSnapshots": "False",
- "FFlagEnableNewInput": "True",
- "FFlagEnablePartyVoiceOnlyForEligibleUsers": "False",
- "FFlagEnablePartyVoiceOnlyForUnfilteredThreads": "False",
- "FFlagEnablePreferredTextSizeGuiService": "True",
- "FFlagEnablePreferredTextSizeScale": "True",
- "FFlagEnablePreferredTextSizeSettingInMenus2": "True",
- "FFlagEnablePreferredTextSizeStyleFixesInAppShell3": "True",
- "FFlagEnablePreferredTextSizeStyleFixesInAvatarExp": "True",
- "FFlagEnableTelemetryProtocol": "False",
- "FFlagEnableTelemetryService1": "False",
- "FFlagEnableTerrainFoliageOptimizations": "True",
- "FFlagEnableTerrainOptimizations": "True",
- "FFlagEnableZstdForClientSettings": "False",
- "FFlagFasterPreciseTime4": "True",
- "FFlagFasterPreciseTime5": "True",
- "FFlagFastGPULightCulling3": "True",
- "FFlagFastLoadingAssets": "True",
- "FFlagFixGraphicsQuality": "True",
- "FFlagFixMeshPartScaling": "False",
- "FFlagFixScalingModelRendering": "False",
- "FFlagFixSensitivityTextPrecision": "False",
- "FFlagGameBasicSettingsFramerateCap5": "false",
- "FFlagGlobalSettingsEngineModule3": "False",
- "FFlagGlobalWindActivated": "False",
- "FFlagGlobalWindRendering": "False",
- "FFlagGraphicsFixMsaaInGuiScene": "True",
- "FFlagGraphicsTextureQuality": "0",
- "FFlagHandleAltEnterFullscreenManually": "False",
- "FFlagHighlightOutlinesOnMobile": "True",
- "FFlagHumanoidStateUseRuntimeSyncPrims": "True",
- "FFlagImproveShiftLockTransition": "True",
- "FFlagKeyframeSequenceUseRuntimeSyncPrims": "True",
- "FFlagLargeReplicatorEnabled5": "True",
- "FFlagLargeReplicatorRead3": "True",
- "FFlagLargeReplicatorSerializeRead": "True",
- "FFlagLargeReplicatorSerializeRead3": "True",
- "FFlagLargeReplicatorSerializeWrite": "True",
- "FFlagLargeReplicatorSerializeWrite4": "True",
- "FFlagLargeReplicatorWrite3": "True",
- "FFlagLargeReplicatorWrite5": "True",
- "FFlagLuaAppLegacyInputSettingRefactor": "true",
- "FFlagLuaAppSystemBar": "False",
- "FFlagLuaMenuPerfImprovements": "True",
- "FFlagLuauCodegen": "True",
- "FFlagMessageBusCallOptimization": "True",
- "FFlagMovePrerender": "True",
- "FFlagMovePrerenderV2": "True",
- "FFlagMSRefactor5": "True",
- "FFlagNetworkSchemaVersionClientBit": "True",
- "FFlagNetworkSchemaVersionServerBit": "True",
- "FFlagNewLightAttenuation": "True",
- "FFlagNewNetworking": "False",
- "FFlagNextGenReplicatorEnabledWrite2": "True",
- "FFlagOpenTelemetryEnabled": "False",
- "FFlagOptimizeAnimations": "True",
- "FFlagOptimizeCFrameUpdates4": "True",
- "FFlagOptimizeCFrameUpdatesIC2": "True",
- "FFlagOptimizeCFrameUpdatesIC4": "True",
- "FFlagOptimizeEmotes": "False",
- "FFlagOptimizeNetwork": "True",
- "FFlagOptimizeNetworkRouting": "True",
- "FFlagOptimizeNetworkTransport": "True",
- "FFlagOptimizeServerTickRate": "True",
- "FFlagPreComputeAcceleratorArrayForSharingTimeCurve": "True",
- "FFlagPreloadAllFonts": "True",
- "FFlagPreloadTextureItemsOption4": "True",
- "FFlagPropertiesEnableTelemetry": "False",
- "FFlagQuaternionPoseCorrection": "True",
- "FFlagReduceRenderDistance": "True",
- "FFlagRenderCBRefactor2": "True",
- "FFlagRenderDebugCheckThreading2": "True",
- "FFlagRenderDisableShadows": "False",
- "FFlagRenderLegacyShadowsQualityRefactor": "True",
- "FFlagRenderNoLowFrmBloom": "False",
- "FFlagRenderSkipReadingShaderData": "False",
- "FFlagRobloxInputUsesRuntime2": "True",
- "FFlagShoeSkipRenderMesh": "False",
- "FFlagSimAnimationConstraint": "True",
- "FFlagSimCSGV3IncrementalTriangulationStreamingCompression": "False",
- "FFlagSimDcdDeltaReplication": "True",
- "FFlagSimDcdEnableDelta2": "True",
- "FFlagSimDcdRefactorDelta3": "True",
- "FFlagSimEditableMeshFastInvalidationForSkinningEnabled": "True",
- "FFlagSimIslandizerManager": "false",
- "FFlagSimOptimizeSetSize": "True",
- "FFlagSimSolverDecreasePartMinimumDensityPhasedRollout2": "True",
- "FFlagSimSolverLimitMaxMotorAcceleration": "False",
- "FFlagSmoothInputOffset": "True",
- "FFlagSortKeyOptimization": "True",
- "FFlagSpecifyNetworkReplicatorScope": "True",
- "FFlagSpecifyNetworkReplicatorScopeForItems": "True",
- "FFlagTaskSchedulerLimitTargetFpsTo2402": "False",
- "FFlagTerrainEnable": "True",
- "FFlagTweenOptimizations": "True",
- "FFlagUseCachedAudibilityMeasurements": "True",
- "FFlagUseDeferredContext": "False",
- "FFlagUseDynamicSun": "False",
- "FFlagUseNewAnimationSystem": "False",
- "FFlagUseParticlesV2": "False",
- "FFlagUserBetterInertialScrolling": "True",
- "FFlagUserCameraControlLastInputTypeUpdate": "False",
- "FFlagUserShowGuiHideToggles": "True",
- "FFlagUseUnifiedRenderStepped": "False",
- "FFlagVoiceBetaBadge": "False",
- "FIntAbdmDefaultMaxBackoffTimeMs": "1",
- "FIntActivatedCountTimerMSKeyboard": "0",
- "FIntActivatedCountTimerMSMouse": "0",
- "FIntAICOInputCommentDebounceTimeMs": "1",
- "FIntAnimationParallelThreadMax": "2147483647",
- "FIntAvatarAutosetupPollingDelaySeconds": "1",
- "FIntAvatarAutosetupPollingIntervalSeconds": "1",
- "FIntBootstrapperTelemetryReportingHundredthsPercentage": "0",
- "FIntCameraMaxZoomDistance": "2147483647",
- "FIntCAP1209DataSharingTOSVersion": "0",
- "FIntCharacterTaskQueueFrameTimeLimitMs": "1",
- "FIntCLI20390": "-1",
- "FIntCLI20390_2": "-1",
- "FIntCoordinatorMemoryPrioritizationFrequencyHz": "0",
- "FIntCoordinatorPlannerStepsPerIteration": "0",
- "FIntCursorTimeToLiveMs": "75",
- "FIntDebounceDisconnectButtonDelay": "1",
- "FIntDebugForceMSAASamples": "-1",
- "FIntDebugFRMOptionalMSAALevelOverride": "-1",
- "FIntDebugSimPrimalStiffnessScaling": "0",
- "FIntDebugTextureManagerSkipMips": "1",
- "FIntDefaultJitterN": "0",
- "FIntDeltaRigidJointsOffset": "0",
- "FIntEnvMapRaycastUpdateDistance": "1",
- "FIntExplorerHeaderDelayBetweenProcessingMs": "1",
- "FIntFRMMaxGrassDistance": "0",
- "FIntFRMMinGrassDistance": "0",
- "FIntFullscreenTitleBarTriggerDelayMillis": "3600000",
- "FIntGrassMovementReducedMotionFactor": "0",
- "FIntHttpNetworkTelemetryPollingMs": "25000",
- "FIntHttpWrapperTelemetryHundredthsPercent": "0",
- "FIntIndexBufferAlignment": "2",
- "FIntInterpolationAwareTargetTimeLerpHundredth": "100",
- "FIntInterpolationMaxDelayMSec": "0",
- "FIntLuaAppThrottleInviteSendEndpointDelay": "1",
- "FIntLuaStepIntervalMsOverride": "1",
- "FIntMaquettesFrameRateBufferPercentage": "10",
- "FIntMaxTimestepMultiplierVelocity": "10",
- "FIntMininumRequiredMemoryInGB": "0",
- "FIntMininumRequiredMemoryInMB": "0",
- "FIntMouseCommandLifetime": "1",
- "FIntNetworkStepsMultipliers": "25",
- "FIntNumFramesToCaptureCallStack": "1",
- "FIntPGSAngularDampingPermillPersecond": "999999999",
- "FIntPreferredTextSizeSettingBetaFeatureRolloutPercent": "100",
- "FIntRakNetDatagramMessageIdArrayLength": "256",
- "FIntRakNetResendBufferArrayLength": "128",
- "FIntRbxStorageSlowInitDelayMS": "1",
- "FIntRenderGrassDetailStrands": "0",
- "FIntRenderGrassHeightScaler": "0",
- "FIntRenderLocalLightFadeInMs": "0",
- "FIntRenderLocalLightUpdatesMax": "8",
- "FIntRenderLocalLightUpdatesMin": "6",
- "FIntRenderMsFrameGatherInterval": "4500",
- "FIntRenderNodeEnterSleepingFrames": "0",
- "FIntRenderShadowIntensity": "0",
- "FIntRenderShadowmapBias": "-1",
- "FIntRenderShadowMapDepthCacheRecycleFrames": "256",
- "FIntReportDeviceInfoRollout": "0",
- "FIntRuntimeMaxNumOfConditions": "20000",
- "FIntRuntimeMaxNumOfDPCs": "64",
- "FIntRuntimeMaxNumOfLatches": "20000",
- "FIntRuntimeMaxNumOfMutexes": "20000",
- "FIntRuntimeMaxNumOfSchedulers": "20000",
- "FIntRuntimeMaxNumOfSemaphores": "1000000",
- "FIntRuntimeMaxNumOfStrands": "1000000",
- "FIntRuntimeMaxNumOfThreads": "20000",
- "FIntRuntimeWorkerStackSize": "2147483645",
- "FIntScrollWheelDeltaAmount": "200",
- "FIntSeatWeldTimeout": "1",
- "FIntSimSolverResponsiveness": "2147483647",
- "FIntSimWorldTaskQueueParallelTasks": "1",
- "FIntSmoothClusterTaskQueueMaxParallelTasks": "6",
- "FIntSmoothClusterTaskQueueMsPerCycle": "1",
- "FIntSmoothMouseSpringFrequencyTenths": "100",
- "FIntSpeedTestPeriodMillis": "2048",
- "FIntStudioWebView2TelemetryHundredthsPercent": "0",
- "FIntTabDragTolerance": "1",
- "FIntTaskSchedulerAsyncTasksMinimumThreadCount": "11",
- "FIntTaskSchedulerMaxNumOfArbiters": "2147483647",
- "FIntTaskSchedulerMaxNumOfJobs": "2147483647",
- "FIntTaskSchedulerTasksDefaultMaxCountPerCycle": "2147483647",
- "FIntTaskSchedulerTasksDefaultMaxTimeMsPerCycle": "2147483647",
- "FIntTaskSchedulerThreadMin": "10",
- "FIntTerrainArraySliceSize": "0",
- "FIntThrottleParticipantsUpdateMs2": "1",
- "FIntTimeToSelectFrames": "1",
- "FIntUnfilteredThreadsPvDelayMs": "0",
- "FIntUpdateLayoutPlaceOpenBlockFrameCount": "500",
- "FIntUserActionTrackerTelemetryHundredthsPercent": "0",
- "FIntVoiceChatCullingJobStepIntervalMs": "1",
- "FIntWorldStepsBehindG": "0",
- "FLogNetwork": "7",
- "FStringCLI52064IxpRxParam": "rxLatency",
- "FStringCLI52064IxpTxParam": "txLatency",
- "FStringCoreScriptBacktraceErrorUploadToken": "null",
- "FStringGamesUrlPath": "/games/",
- "FStringIXPGraphicsOptimizationModePerformanceScale": "100",
- "FStringPerformanceSendMeasurementAPISubdomain": "opt-out",
- "FStringRealtimeIxpLayer": "True",
- "FStringTencentAuthPath": "null",
- "FStringVoiceBetaBadgeLearnMoreLink": "null"
+-- ============================================
+-- GHOST LIMB EXTENDER - FINAL STEALTH BUILD
+-- ============================================
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local localPlayer = Players.LocalPlayer
+
+local DEFAULTS = {
+    TOGGLE = "L",
+    TARGET_LIMB = "HumanoidRootPart",
+    LIMB_SIZE = 15,
+    LIMB_TRANSPARENCY = 0.9,
+    LIMB_CAN_COLLIDE = false,
+    MOBILE_BUTTON = true,
+    LISTEN_FOR_INPUT = true,
+    TEAM_CHECK = true,
+    FORCEFIELD_CHECK = true,
+    RESET_LIMB_ON_DEATH2 = false,
+    USE_HIGHLIGHT = true,
+    DEPTH_MODE = "AlwaysOnTop",
+    HIGHLIGHT_FILL_COLOR = Color3.fromRGB(255, 117, 24),
+    HIGHLIGHT_FILL_TRANSPARENCY = 0.7,
+    HIGHLIGHT_OUTLINE_COLOR = Color3.fromRGB(0, 0, 0),
+    HIGHLIGHT_OUTLINE_TRANSPARENCY = 1,
 }
+
+local limbExtenderData = getgenv().limbExtenderData or {}
+getgenv().limbExtenderData = limbExtenderData
+
+-- Destroy previous instance cleanly
+if limbExtenderData._cleanup and type(limbExtenderData._cleanup) == "function" then
+    pcall(limbExtenderData._cleanup)
+end
+
+-- ============================================
+-- EXTERNAL DEPENDENCIES (Load quietly)
+-- ============================================
+local function safeLoad(url)
+    local success, result = pcall(function()
+        return loadstring(game:HttpGet(url))()
+    end)
+    return success and result or nil
+end
+
+local ConnectionManager = limbExtenderData.ConnectionManager or safeLoad('https://raw.githubusercontent.com/AAPVdev/modules/refs/heads/main/ConnectionManager.lua')
+local ContextActionUtility = limbExtenderData.ContextActionUtility or safeLoad('https://raw.githubusercontent.com/AAPVdev/modules/refs/heads/main/ContextActionUtility.lua')
+
+limbExtenderData.ConnectionManager = ConnectionManager
+limbExtenderData.ContextActionUtility = ContextActionUtility
+
+-- ============================================
+-- DECOY FOLDER (Empty, for misdirection)
+-- ============================================
+local decoyFolder = nil
+local function getDecoyFolder()
+    if decoyFolder and decoyFolder.Parent then
+        return decoyFolder
+    end
+    decoyFolder = Instance.new("Folder")
+    decoyFolder.Name = "LimbExtenderClones"
+    decoyFolder.Parent = workspace
+    return decoyFolder
+end
+
+-- ============================================
+-- GHOST PART CREATOR
+-- ============================================
+local function createGhostPart(originalPart, settings)
+    local sizeVal = settings.LIMB_SIZE or DEFAULTS.LIMB_SIZE
+    
+    -- The ghost: parented to nil, named to blend in
+    local ghostPart = Instance.new("Part")
+    ghostPart.Name = "Handle" -- Blends in with standard accessory handles
+    ghostPart.Size = Vector3.new(sizeVal, sizeVal, sizeVal)
+    ghostPart.Transparency = settings.LIMB_TRANSPARENCY
+    ghostPart.CanCollide = settings.LIMB_CAN_COLLIDE
+    ghostPart.Anchored = false
+    ghostPart.Massless = true
+    ghostPart.CastShadow = false
+    ghostPart.CanQuery = false
+    ghostPart.CanTouch = false
+    
+    -- Make it look like the target to help the highlight blend
+    pcall(function()
+        ghostPart.Color = originalPart.Color
+        ghostPart.Material = originalPart.Material
+    end)
+
+    -- CRITICAL: Parent to nil so it does not appear in Workspace
+    ghostPart.Parent = nil
+    
+    -- Weld the ghost (parented to nil) to the real target (in Workspace)
+    local weld = Instance.new("WeldConstraint")
+    weld.Part0 = ghostPart
+    weld.Part1 = originalPart
+    weld.Parent = ghostPart -- The weld is parented to the ghost, keeping everything hidden
+
+    -- Hide the original part to make the ghost the only visible/interactable piece
+    originalPart.Transparency = 1
+    
+    return ghostPart, weld
+end
+
+local function destroyGhostPart(ghostPart, originalPart)
+    -- Restore the original part's visibility
+    if originalPart and originalPart.Parent then
+        originalPart.Transparency = 0
+    end
+    -- The weld is parented to the ghost, so destroying the ghost destroys the weld too.
+    if ghostPart then
+        ghostPart:Destroy()
+    end
+end
+
+-- ============================================
+-- HIGHLIGHT (Attached to the ghost part)
+-- ============================================
+local function makeHighlight(ghostPart, settings)
+    local hiFolder = game:GetService("ReplicatedStorage"):FindFirstChild("Limb Extender Highlights Folder")
+    if not hiFolder then
+        hiFolder = Instance.new("Folder")
+        hiFolder.Name = "Limb Extender Highlights Folder"
+        hiFolder.Parent = game:GetService("ReplicatedStorage")
+    end
+    local hi = Instance.new("Highlight")
+    hi.Name = "LimbHighlight"
+    
+    pcall(function()
+        if settings.DEPTH_MODE and Enum.HighlightDepthMode[settings.DEPTH_MODE] then
+            hi.DepthMode = Enum.HighlightDepthMode[settings.DEPTH_MODE]
+        end
+        hi.FillColor = settings.HIGHLIGHT_FILL_COLOR or Color3.fromRGB(255, 117, 24)
+        hi.FillTransparency = settings.HIGHLIGHT_FILL_TRANSPARENCY or 0.7
+        hi.OutlineColor = settings.HIGHLIGHT_OUTLINE_COLOR or Color3.fromRGB(0, 0, 0)
+        hi.OutlineTransparency = settings.HIGHLIGHT_OUTLINE_TRANSPARENCY or 1
+        hi.Adornee = ghostPart
+        hi.Enabled = true
+    end)
+    
+    hi.Parent = hiFolder
+    return hi
+end
+
+-- ============================================
+-- PLAYER DATA (Manages the ghost parts for each player)
+-- ============================================
+local PlayerData = {}
+PlayerData.__index = PlayerData
+
+function PlayerData.new(parent, player)
+    local self = setmetatable({
+        _parent = parent,
+        player = player,
+        _ghosts = {}, -- { [originalPart] = { ghostPart = ghost, highlight = hi } }
+        _charDelay = nil,
+        _destroyed = false,
+    }, PlayerData)
+
+    -- Connect to character events
+    if player and player.CharacterAdded then
+        player.CharacterAdded:Connect(function(c) 
+            if not self._destroyed then
+                self:onCharacter(c) 
+            end
+        end)
+    end
+    
+    -- Check if the player already has a character
+    local character = player and (player.Character or workspace:FindFirstChild(player.Name))
+    if character then
+        self:onCharacter(character)
+    end
+    
+    return self
+end
+
+function PlayerData:createGhost(part)
+    if not part or self._ghosts[part] then return end -- Avoid duplicates
+    
+    local settings = self._parent._settings
+    
+    -- Create the ghost part and its highlight
+    local ghostPart, _ = createGhostPart(part, settings)
+    local highlight = nil
+    if settings.USE_HIGHLIGHT then
+        highlight = makeHighlight(ghostPart, settings)
+    end
+    
+    -- Store everything for cleanup
+    self._ghosts[part] = {
+        ghostPart = ghostPart,
+        highlight = highlight,
+    }
+end
+
+function PlayerData:destroyGhost(part)
+    local data = self._ghosts[part]
+    if not data then return end
+    
+    if data.highlight then
+        pcall(function() data.highlight:Destroy() end)
+    end
+    destroyGhostPart(data.ghostPart, part)
+    self._ghosts[part] = nil
+end
+
+function PlayerData:destroyAllGhosts()
+    for part, _ in pairs(self._ghosts) do
+        self:destroyGhost(part)
+    end
+end
+
+function PlayerData:setupCharacter(char)
+    local parent = self._parent
+    if not char or not parent or self._destroyed then return end
+    if not self.player then return end
+
+    -- Skip team members
+    if parent:_isTeam(self.player) then return end
+
+    -- Ensure character is alive
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid or humanoid.Health <= 0 then return end
+
+    -- Find the target limb (e.g., HumanoidRootPart)
+    local targetPart = char:FindFirstChild(parent._settings.TARGET_LIMB)
+    if not targetPart or not targetPart:IsA("BasePart") then return end
+
+    -- Create the ghost!
+    self:createGhost(targetPart)
+
+    -- Cleanup on death
+    local deathEvent = parent._settings.RESET_LIMB_ON_DEATH2 and humanoid.HealthChanged or humanoid.Died
+    if deathEvent then
+        local deathConn
+        deathConn = deathEvent:Connect(function(hp)
+            if not hp or hp <= 0 then
+                self:destroyGhost(targetPart)
+                if deathConn then deathConn:Disconnect() end
+            end
+        end)
+    end
+
+    -- Cleanup when the character is removed
+    if self.player and self.player.CharacterRemoving then
+        local removeConn
+        removeConn = self.player.CharacterRemoving:Connect(function()
+            self:destroyAllGhosts()
+            if removeConn then removeConn:Disconnect() end
+        end)
+    end
+end
+
+function PlayerData:onCharacter(char)
+    if not char or self._destroyed then return end
+    
+    -- Cancel any pending setup
+    if self._charDelay then 
+        task.cancel(self._charDelay)
+        self._charDelay = nil 
+    end
+
+    -- Delay setup slightly to avoid burst processing on spawn
+    self._charDelay = task.delay(0.5, function()
+        if self._destroyed then return end
+        
+        local parent = self._parent
+        -- If the player has a forcefield, wait for it to drop
+        if parent._settings.FORCEFIELD_CHECK then
+            local ff = char:FindFirstChildOfClass("ForceField")
+            if ff then
+                local ffConn
+                ffConn = ff.Destroying:Connect(function()
+                    self:setupCharacter(char)
+                    if ffConn then ffConn:Disconnect() end
+                end)
+                return
+            end
+        end
+        self:setupCharacter(char)
+    end)
+end
+
+function PlayerData:Destroy()
+    if self._destroyed then return end
+    self._destroyed = true
+
+    -- Destroy all created ghosts
+    self:destroyAllGhosts()
+
+    -- Cancel pending operations
+    if self._charDelay then 
+        pcall(function() task.cancel(self._charDelay) end)
+        self._charDelay = nil 
+    end
+
+    -- Prevent memory leaks
+    setmetatable(self, nil)
+    for k in pairs(self) do self[k] = nil end
+end
+
+-- ============================================
+-- MAIN LIMB EXTENDER CONTROLLER
+-- ============================================
+local LimbExtender = {}
+LimbExtender.__index = LimbExtender
+
+function LimbExtender.new(userSettings)
+    local self = setmetatable({
+        _settings = mergeSettings(userSettings),
+        _playerTable = {},
+        _connections = {},
+        _running = false,
+        _destroyed = false,
+    }, LimbExtender)
+
+    -- Deferred startup to blend in
+    task.delay(0.8, function()
+        if self._destroyed then return end
+        
+        -- Bind the toggle key
+        if self._settings.LISTEN_FOR_INPUT and ContextActionUtility and type(ContextActionUtility.BindAction) == "function" then
+            ContextActionUtility:BindAction(
+                "LimbExtenderToggle",
+                function(_, inputState)
+                    if inputState == Enum.UserInputState.Begin then
+                        self:Toggle()
+                    end
+                end,
+                self._settings.MOBILE_BUTTON,
+                Enum.KeyCode[self._settings.TOGGLE]
+            )
+        end
+        
+        -- Create the empty decoy folder
+        getDecoyFolder()
+    end)
+
+    -- Store cleanup function globally for re-injection handling
+    limbExtenderData._cleanup = function()
+        pcall(function() self:Destroy() end)
+    end
+
+    return self
+end
+
+function LimbExtender:_isTeam(player)
+    return self._settings.TEAM_CHECK 
+        and localPlayer 
+        and localPlayer.Team ~= nil 
+        and player.Team == localPlayer.Team
+end
+
+function LimbExtender:_connect(signal, callback)
+    if not signal then return end
+    local conn = signal:Connect(callback)
+    table.insert(self._connections, conn)
+    return conn
+end
+
+function LimbExtender:_disconnectAll()
+    for _, conn in ipairs(self._connections) do
+        pcall(function() conn:Disconnect() end)
+    end
+    self._connections = {}
+end
+
+function LimbExtender:Start()
+    if self._running then return end
+    self._running = true
+
+    -- Create ghosts for all current players
+    for _, p in ipairs(Players:GetPlayers()) do
+        if p ~= localPlayer then
+            if not self._playerTable[p.Name] then
+                self._playerTable[p.Name] = PlayerData.new(self, p)
+            end
+        end
+    end
+
+    -- Restart on local player team change
+    if localPlayer then
+        local sig = localPlayer:GetPropertyChangedSignal("Team")
+        if sig then
+            self:_connect(sig, function() self:Restart() end)
+        end
+    end
+
+    -- Handle new players joining
+    self:_connect(Players.PlayerAdded, function(p)
+        if not self._playerTable[p.Name] then
+            self._playerTable[p.Name] = PlayerData.new(self, p)
+        end
+    end)
+
+    -- Handle players leaving
+    self:_connect(Players.PlayerRemoving, function(p)
+        local pd = self._playerTable[p.Name]
+        if pd and type(pd.Destroy) == "function" then 
+            pd:Destroy() 
+        end
+        self._playerTable[p.Name] = nil
+    end)
+
+    -- Update mobile button UI
+    if self._settings.MOBILE_BUTTON and ContextActionUtility and type(ContextActionUtility.SetTitle) == "function" then
+        ContextActionUtility:SetTitle("LimbExtenderToggle", "On")
+    end
+end
+
+function LimbExtender:Stop()
+    if not self._running then return end
+    self._running = false
+
+    self:_disconnectAll()
+
+    -- Destroy all player data and their ghosts
+    for _, pd in pairs(self._playerTable) do
+        if pd and type(pd.Destroy) == "function" then 
+            pd:Destroy() 
+        end
+    end
+    self._playerTable = {}
+
+    -- Update mobile button UI
+    if self._settings.MOBILE_BUTTON and ContextActionUtility and type(ContextActionUtility.SetTitle) == "function" then
+        ContextActionUtility:SetTitle("LimbExtenderToggle", "Off")
+    end
+end
+
+function LimbExtender:Toggle()
+    if self._running then
+        self:Stop()
+    else
+        self:Start()
+    end
+end
+
+function LimbExtender:Restart()
+    local wasRunning = self._running
+    self:Stop()
+    if wasRunning then 
+        task.delay(0.3, function()
+            if not self._destroyed then
+                self:Start()
+            end
+        end)
+    end
+end
+
+function LimbExtender:Destroy()
+    if self._destroyed then return end
+    self._destroyed = true
+
+    self:Stop()
+
+    -- Unbind key
+    if ContextActionUtility and type(ContextActionUtility.UnbindAction) == "function" then
+        pcall(function() ContextActionUtility:UnbindAction("LimbExtenderToggle") end)
+    end
+
+    -- Remove decoy folder
+    if decoyFolder then
+        pcall(function() decoyFolder:Destroy() end)
+        decoyFolder = nil
+    end
+
+    limbExtenderData._cleanup = nil
+end
+
+function LimbExtender:Set(key, value)
+    if self._settings[key] ~= value then
+        self._settings[key] = value
+        self:Restart()
+    end
+end
+
+function LimbExtender:Get(key) 
+    return self._settings[key] 
+end
+
+return setmetatable({}, { 
+    __call = function(_, userSettings) 
+        return LimbExtender.new(userSettings) 
+    end 
+})
