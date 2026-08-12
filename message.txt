@@ -1,5 +1,5 @@
 -- ============================================
--- GHOST LIMB EXTENDER - FINAL STEALTH BUILD
+-- GHOST LIMB EXTENDER - STANDALONE
 -- ============================================
 
 local Players = game:GetService("Players")
@@ -7,429 +7,343 @@ local RunService = game:GetService("RunService")
 local localPlayer = Players.LocalPlayer
 
 local DEFAULTS = {
-    TOGGLE = "L",
+    TOGGLE_KEY = "L",
     TARGET_LIMB = "HumanoidRootPart",
     LIMB_SIZE = 15,
-    LIMB_TRANSPARENCY = 0.9,
+    LIMB_TRANSPARENCY = 0.8,
     LIMB_CAN_COLLIDE = false,
-    MOBILE_BUTTON = true,
-    LISTEN_FOR_INPUT = true,
     TEAM_CHECK = true,
-    FORCEFIELD_CHECK = true,
-    RESET_LIMB_ON_DEATH2 = false,
     USE_HIGHLIGHT = true,
-    DEPTH_MODE = "AlwaysOnTop",
     HIGHLIGHT_FILL_COLOR = Color3.fromRGB(255, 117, 24),
-    HIGHLIGHT_FILL_TRANSPARENCY = 0.7,
-    HIGHLIGHT_OUTLINE_COLOR = Color3.fromRGB(0, 0, 0),
+    HIGHLIGHT_FILL_TRANSPARENCY = 0.5,
     HIGHLIGHT_OUTLINE_TRANSPARENCY = 1,
 }
 
-local limbExtenderData = getgenv().limbExtenderData or {}
-getgenv().limbExtenderData = limbExtenderData
-
--- Destroy previous instance cleanly
-if limbExtenderData._cleanup and type(limbExtenderData._cleanup) == "function" then
-    pcall(limbExtenderData._cleanup)
+-- ============================================
+-- CLEANUP OLD INSTANCE
+-- ============================================
+if getgenv().GhostLimbExtender_Cleanup and type(getgenv().GhostLimbExtender_Cleanup) == "function" then
+    pcall(getgenv().GhostLimbExtender_Cleanup)
 end
 
 -- ============================================
--- EXTERNAL DEPENDENCIES (Load quietly)
+-- CONNECTION MANAGER (Lightweight, self-contained)
 -- ============================================
-local function safeLoad(url)
-    local success, result = pcall(function()
-        return loadstring(game:HttpGet(url))()
-    end)
-    return success and result or nil
+local ConnectionManager = {}
+ConnectionManager.__index = ConnectionManager
+
+function ConnectionManager.new()
+    return setmetatable({ _connections = {} }, ConnectionManager)
 end
 
-local ConnectionManager = limbExtenderData.ConnectionManager or safeLoad('https://raw.githubusercontent.com/AAPVdev/modules/refs/heads/main/ConnectionManager.lua')
-local ContextActionUtility = limbExtenderData.ContextActionUtility or safeLoad('https://raw.githubusercontent.com/AAPVdev/modules/refs/heads/main/ContextActionUtility.lua')
-
-limbExtenderData.ConnectionManager = ConnectionManager
-limbExtenderData.ContextActionUtility = ContextActionUtility
-
--- ============================================
--- DECOY FOLDER (Empty, for misdirection)
--- ============================================
-local decoyFolder = nil
-local function getDecoyFolder()
-    if decoyFolder and decoyFolder.Parent then
-        return decoyFolder
-    end
-    decoyFolder = Instance.new("Folder")
-    decoyFolder.Name = "LimbExtenderClones"
-    decoyFolder.Parent = workspace
-    return decoyFolder
-end
-
--- ============================================
--- GHOST PART CREATOR
--- ============================================
-local function createGhostPart(originalPart, settings)
-    local sizeVal = settings.LIMB_SIZE or DEFAULTS.LIMB_SIZE
-    
-    -- The ghost: parented to nil, named to blend in
-    local ghostPart = Instance.new("Part")
-    ghostPart.Name = "Handle" -- Blends in with standard accessory handles
-    ghostPart.Size = Vector3.new(sizeVal, sizeVal, sizeVal)
-    ghostPart.Transparency = settings.LIMB_TRANSPARENCY
-    ghostPart.CanCollide = settings.LIMB_CAN_COLLIDE
-    ghostPart.Anchored = false
-    ghostPart.Massless = true
-    ghostPart.CastShadow = false
-    ghostPart.CanQuery = false
-    ghostPart.CanTouch = false
-    
-    -- Make it look like the target to help the highlight blend
-    pcall(function()
-        ghostPart.Color = originalPart.Color
-        ghostPart.Material = originalPart.Material
-    end)
-
-    -- CRITICAL: Parent to nil so it does not appear in Workspace
-    ghostPart.Parent = nil
-    
-    -- Weld the ghost (parented to nil) to the real target (in Workspace)
-    local weld = Instance.new("WeldConstraint")
-    weld.Part0 = ghostPart
-    weld.Part1 = originalPart
-    weld.Parent = ghostPart -- The weld is parented to the ghost, keeping everything hidden
-
-    -- Hide the original part to make the ghost the only visible/interactable piece
-    originalPart.Transparency = 1
-    
-    return ghostPart, weld
-end
-
-local function destroyGhostPart(ghostPart, originalPart)
-    -- Restore the original part's visibility
-    if originalPart and originalPart.Parent then
-        originalPart.Transparency = 0
-    end
-    -- The weld is parented to the ghost, so destroying the ghost destroys the weld too.
-    if ghostPart then
-        ghostPart:Destroy()
-    end
-end
-
--- ============================================
--- HIGHLIGHT (Attached to the ghost part)
--- ============================================
-local function makeHighlight(ghostPart, settings)
-    local hiFolder = game:GetService("ReplicatedStorage"):FindFirstChild("Limb Extender Highlights Folder")
-    if not hiFolder then
-        hiFolder = Instance.new("Folder")
-        hiFolder.Name = "Limb Extender Highlights Folder"
-        hiFolder.Parent = game:GetService("ReplicatedStorage")
-    end
-    local hi = Instance.new("Highlight")
-    hi.Name = "LimbHighlight"
-    
-    pcall(function()
-        if settings.DEPTH_MODE and Enum.HighlightDepthMode[settings.DEPTH_MODE] then
-            hi.DepthMode = Enum.HighlightDepthMode[settings.DEPTH_MODE]
-        end
-        hi.FillColor = settings.HIGHLIGHT_FILL_COLOR or Color3.fromRGB(255, 117, 24)
-        hi.FillTransparency = settings.HIGHLIGHT_FILL_TRANSPARENCY or 0.7
-        hi.OutlineColor = settings.HIGHLIGHT_OUTLINE_COLOR or Color3.fromRGB(0, 0, 0)
-        hi.OutlineTransparency = settings.HIGHLIGHT_OUTLINE_TRANSPARENCY or 1
-        hi.Adornee = ghostPart
-        hi.Enabled = true
-    end)
-    
-    hi.Parent = hiFolder
-    return hi
-end
-
--- ============================================
--- PLAYER DATA (Manages the ghost parts for each player)
--- ============================================
-local PlayerData = {}
-PlayerData.__index = PlayerData
-
-function PlayerData.new(parent, player)
-    local self = setmetatable({
-        _parent = parent,
-        player = player,
-        _ghosts = {}, -- { [originalPart] = { ghostPart = ghost, highlight = hi } }
-        _charDelay = nil,
-        _destroyed = false,
-    }, PlayerData)
-
-    -- Connect to character events
-    if player and player.CharacterAdded then
-        player.CharacterAdded:Connect(function(c) 
-            if not self._destroyed then
-                self:onCharacter(c) 
-            end
-        end)
-    end
-    
-    -- Check if the player already has a character
-    local character = player and (player.Character or workspace:FindFirstChild(player.Name))
-    if character then
-        self:onCharacter(character)
-    end
-    
-    return self
-end
-
-function PlayerData:createGhost(part)
-    if not part or self._ghosts[part] then return end -- Avoid duplicates
-    
-    local settings = self._parent._settings
-    
-    -- Create the ghost part and its highlight
-    local ghostPart, _ = createGhostPart(part, settings)
-    local highlight = nil
-    if settings.USE_HIGHLIGHT then
-        highlight = makeHighlight(ghostPart, settings)
-    end
-    
-    -- Store everything for cleanup
-    self._ghosts[part] = {
-        ghostPart = ghostPart,
-        highlight = highlight,
-    }
-end
-
-function PlayerData:destroyGhost(part)
-    local data = self._ghosts[part]
-    if not data then return end
-    
-    if data.highlight then
-        pcall(function() data.highlight:Destroy() end)
-    end
-    destroyGhostPart(data.ghostPart, part)
-    self._ghosts[part] = nil
-end
-
-function PlayerData:destroyAllGhosts()
-    for part, _ in pairs(self._ghosts) do
-        self:destroyGhost(part)
-    end
-end
-
-function PlayerData:setupCharacter(char)
-    local parent = self._parent
-    if not char or not parent or self._destroyed then return end
-    if not self.player then return end
-
-    -- Skip team members
-    if parent:_isTeam(self.player) then return end
-
-    -- Ensure character is alive
-    local humanoid = char:FindFirstChildOfClass("Humanoid")
-    if not humanoid or humanoid.Health <= 0 then return end
-
-    -- Find the target limb (e.g., HumanoidRootPart)
-    local targetPart = char:FindFirstChild(parent._settings.TARGET_LIMB)
-    if not targetPart or not targetPart:IsA("BasePart") then return end
-
-    -- Create the ghost!
-    self:createGhost(targetPart)
-
-    -- Cleanup on death
-    local deathEvent = parent._settings.RESET_LIMB_ON_DEATH2 and humanoid.HealthChanged or humanoid.Died
-    if deathEvent then
-        local deathConn
-        deathConn = deathEvent:Connect(function(hp)
-            if not hp or hp <= 0 then
-                self:destroyGhost(targetPart)
-                if deathConn then deathConn:Disconnect() end
-            end
-        end)
-    end
-
-    -- Cleanup when the character is removed
-    if self.player and self.player.CharacterRemoving then
-        local removeConn
-        removeConn = self.player.CharacterRemoving:Connect(function()
-            self:destroyAllGhosts()
-            if removeConn then removeConn:Disconnect() end
-        end)
-    end
-end
-
-function PlayerData:onCharacter(char)
-    if not char or self._destroyed then return end
-    
-    -- Cancel any pending setup
-    if self._charDelay then 
-        task.cancel(self._charDelay)
-        self._charDelay = nil 
-    end
-
-    -- Delay setup slightly to avoid burst processing on spawn
-    self._charDelay = task.delay(0.5, function()
-        if self._destroyed then return end
-        
-        local parent = self._parent
-        -- If the player has a forcefield, wait for it to drop
-        if parent._settings.FORCEFIELD_CHECK then
-            local ff = char:FindFirstChildOfClass("ForceField")
-            if ff then
-                local ffConn
-                ffConn = ff.Destroying:Connect(function()
-                    self:setupCharacter(char)
-                    if ffConn then ffConn:Disconnect() end
-                end)
-                return
-            end
-        end
-        self:setupCharacter(char)
-    end)
-end
-
-function PlayerData:Destroy()
-    if self._destroyed then return end
-    self._destroyed = true
-
-    -- Destroy all created ghosts
-    self:destroyAllGhosts()
-
-    -- Cancel pending operations
-    if self._charDelay then 
-        pcall(function() task.cancel(self._charDelay) end)
-        self._charDelay = nil 
-    end
-
-    -- Prevent memory leaks
-    setmetatable(self, nil)
-    for k in pairs(self) do self[k] = nil end
-end
-
--- ============================================
--- MAIN LIMB EXTENDER CONTROLLER
--- ============================================
-local LimbExtender = {}
-LimbExtender.__index = LimbExtender
-
-function LimbExtender.new(userSettings)
-    local self = setmetatable({
-        _settings = mergeSettings(userSettings),
-        _playerTable = {},
-        _connections = {},
-        _running = false,
-        _destroyed = false,
-    }, LimbExtender)
-
-    -- Deferred startup to blend in
-    task.delay(0.8, function()
-        if self._destroyed then return end
-        
-        -- Bind the toggle key
-        if self._settings.LISTEN_FOR_INPUT and ContextActionUtility and type(ContextActionUtility.BindAction) == "function" then
-            ContextActionUtility:BindAction(
-                "LimbExtenderToggle",
-                function(_, inputState)
-                    if inputState == Enum.UserInputState.Begin then
-                        self:Toggle()
-                    end
-                end,
-                self._settings.MOBILE_BUTTON,
-                Enum.KeyCode[self._settings.TOGGLE]
-            )
-        end
-        
-        -- Create the empty decoy folder
-        getDecoyFolder()
-    end)
-
-    -- Store cleanup function globally for re-injection handling
-    limbExtenderData._cleanup = function()
-        pcall(function() self:Destroy() end)
-    end
-
-    return self
-end
-
-function LimbExtender:_isTeam(player)
-    return self._settings.TEAM_CHECK 
-        and localPlayer 
-        and localPlayer.Team ~= nil 
-        and player.Team == localPlayer.Team
-end
-
-function LimbExtender:_connect(signal, callback)
-    if not signal then return end
+function ConnectionManager:Connect(signal, callback)
+    if not signal or not callback then return end
     local conn = signal:Connect(callback)
     table.insert(self._connections, conn)
     return conn
 end
 
-function LimbExtender:_disconnectAll()
+function ConnectionManager:DisconnectAll()
     for _, conn in ipairs(self._connections) do
         pcall(function() conn:Disconnect() end)
     end
     self._connections = {}
 end
 
-function LimbExtender:Start()
+function ConnectionManager:Destroy()
+    self:DisconnectAll()
+end
+
+-- ============================================
+-- GHOST PART CREATION
+-- ============================================
+local function createGhostPart(originalPart, settings)
+    local ghost = Instance.new("Part")
+    ghost.Name = "Handle"
+    ghost.Size = Vector3.new(settings.LIMB_SIZE, settings.LIMB_SIZE, settings.LIMB_SIZE)
+    ghost.Transparency = settings.LIMB_TRANSPARENCY
+    ghost.CanCollide = settings.LIMB_CAN_COLLIDE
+    ghost.Anchored = false
+    ghost.Massless = true
+    ghost.CastShadow = false
+    ghost.CanQuery = false
+    ghost.CanTouch = false
+
+    pcall(function()
+        ghost.Color = originalPart.Color
+        ghost.Material = originalPart.Material
+    end)
+
+    ghost.Parent = nil -- GHOST MODE: invisible to workspace enumeration
+
+    local weld = Instance.new("WeldConstraint")
+    weld.Part0 = ghost
+    weld.Part1 = originalPart
+    weld.Parent = ghost
+
+    -- Hide the original part so only the ghost shows
+    originalPart.Transparency = 1
+
+    local highlight = nil
+    if settings.USE_HIGHLIGHT then
+        highlight = Instance.new("Highlight")
+        highlight.FillColor = settings.HIGHLIGHT_FILL_COLOR or Color3.fromRGB(255, 117, 24)
+        highlight.FillTransparency = settings.HIGHLIGHT_FILL_TRANSPARENCY or 0.5
+        highlight.OutlineTransparency = settings.HIGHLIGHT_OUTLINE_TRANSPARENCY or 1
+        highlight.Adornee = ghost
+        highlight.Enabled = true
+        highlight.Parent = ghost
+    end
+
+    return ghost, weld, highlight
+end
+
+local function destroyGhostPart(ghost, originalPart)
+    if originalPart and originalPart.Parent then
+        originalPart.Transparency = 0
+    end
+    if ghost then
+        ghost:Destroy()
+    end
+end
+
+-- ============================================
+-- PLAYER DATA (Manages one ghost per player)
+-- ============================================
+local PlayerData = {}
+PlayerData.__index = PlayerData
+
+function PlayerData.new(controller, player)
+    local self = setmetatable({
+        _controller = controller,
+        player = player,
+        _ghostData = nil, -- { ghost, highlight, originalPart }
+        _conns = ConnectionManager.new(),
+        _destroyed = false,
+    }, PlayerData)
+
+    if player.CharacterAdded then
+        self._conns:Connect(player.CharacterAdded, function(char)
+            if not self._destroyed then
+                self:onCharacter(char)
+            end
+        end)
+    end
+
+    local char = player.Character or workspace:FindFirstChild(player.Name)
+    if char then
+        self:onCharacter(char)
+    end
+
+    return self
+end
+
+function PlayerData:attachGhost(targetPart)
+    if self._ghostData then return end -- Already attached
+
+    local settings = self._controller._settings
+    local ghost, _, highlight = createGhostPart(targetPart, settings)
+    self._ghostData = {
+        ghostPart = ghost,
+        highlight = highlight,
+        originalPart = targetPart,
+    }
+
+    -- Cleanup on death
+    local char = targetPart.Parent
+    if char then
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        if humanoid and humanoid.Died then
+            self._conns:Connect(humanoid.Died, function()
+                self:detachGhost()
+            end)
+        end
+    end
+
+    -- Cleanup on character removal
+    if self.player.CharacterRemoving then
+        self._conns:Connect(self.player.CharacterRemoving, function()
+            self:detachGhost()
+        end)
+    end
+end
+
+function PlayerData:detachGhost()
+    if not self._ghostData then return end
+    destroyGhostPart(self._ghostData.ghostPart, self._ghostData.originalPart)
+    if self._ghostData.highlight then
+        pcall(function() self._ghostData.highlight:Destroy() end)
+    end
+    self._ghostData = nil
+end
+
+function PlayerData:onCharacter(char)
+    if not char or self._destroyed then return end
+    if self._controller:_isTeam(self.player) then return end
+
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid or humanoid.Health <= 0 then return end
+
+    local targetPart = char:FindFirstChild(self._controller._settings.TARGET_LIMB)
+    if not targetPart or not targetPart:IsA("BasePart") then return end
+
+    self:detachGhost()
+    self:attachGhost(targetPart)
+end
+
+function PlayerData:Destroy()
+    if self._destroyed then return end
+    self._destroyed = true
+
+    self:detachGhost()
+    self._conns:Destroy()
+
+    setmetatable(self, nil)
+    for k in pairs(self) do self[k] = nil end
+end
+
+-- ============================================
+-- MAIN CONTROLLER
+-- ============================================
+local GhostLimbExtender = {}
+GhostLimbExtender.__index = GhostLimbExtender
+
+function GhostLimbExtender.new(userSettings)
+    local self = setmetatable({
+        _settings = {},
+        _playerData = {},
+        _conns = ConnectionManager.new(),
+        _running = false,
+        _destroyed = false,
+    }, GhostLimbExtender)
+
+    -- Merge settings
+    for k, v in pairs(DEFAULTS) do self._settings[k] = v end
+    if userSettings then
+        for k, v in pairs(userSettings) do self._settings[k] = v end
+    end
+
+    -- Keybind via UserInputService (no external deps)
+    local uis = game:GetService("UserInputService")
+    self._conns:Connect(uis.InputBegan, function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.KeyCode == Enum.KeyCode[self._settings.TOGGLE_KEY] then
+            self:Toggle()
+        end
+    end)
+
+    -- Mobile button via ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "GhostLimbExtender"
+    screenGui.Parent = localPlayer:WaitForChild("PlayerGui")
+
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Size = UDim2.new(0, 140, 0, 35)
+    toggleButton.Position = UDim2.new(0, 5, 0, 5)
+    toggleButton.Text = "GHOST: OFF"
+    toggleButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    toggleButton.TextColor3 = Color3.fromRGB(200, 200, 200)
+    toggleButton.Font = Enum.Font.Code
+    toggleButton.TextSize = 12
+    toggleButton.Parent = screenGui
+
+    self._toggleButton = toggleButton
+
+    toggleButton.MouseButton1Click:Connect(function()
+        self:Toggle()
+    end)
+
+    -- Mobile drag support
+    local dragging = false
+    local dragStart = nil
+    local startPos = nil
+
+    toggleButton.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+            dragStart = input.Position
+            startPos = toggleButton.Position
+        end
+    end)
+
+    uis.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+            local delta = input.Position - dragStart
+            toggleButton.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        end
+    end)
+
+    uis.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = false
+        end
+    end)
+
+    -- Register global cleanup
+    getgenv().GhostLimbExtender_Cleanup = function()
+        pcall(function() self:Destroy() end)
+    end
+
+    return self
+end
+
+function GhostLimbExtender:_isTeam(player)
+    return self._settings.TEAM_CHECK
+        and localPlayer
+        and localPlayer.Team ~= nil
+        and player.Team == localPlayer.Team
+end
+
+function GhostLimbExtender:Start()
     if self._running then return end
     self._running = true
 
-    -- Create ghosts for all current players
-    for _, p in ipairs(Players:GetPlayers()) do
-        if p ~= localPlayer then
-            if not self._playerTable[p.Name] then
-                self._playerTable[p.Name] = PlayerData.new(self, p)
+    if self._toggleButton then
+        self._toggleButton.Text = "GHOST: ON"
+        self._toggleButton.BackgroundColor3 = Color3.fromRGB(80, 20, 20)
+    end
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= localPlayer then
+            if not self._playerData[player.Name] then
+                self._playerData[player.Name] = PlayerData.new(self, player)
             end
         end
     end
 
-    -- Restart on local player team change
-    if localPlayer then
-        local sig = localPlayer:GetPropertyChangedSignal("Team")
-        if sig then
-            self:_connect(sig, function() self:Restart() end)
-        end
-    end
-
-    -- Handle new players joining
-    self:_connect(Players.PlayerAdded, function(p)
-        if not self._playerTable[p.Name] then
-            self._playerTable[p.Name] = PlayerData.new(self, p)
+    self._conns:Connect(Players.PlayerAdded, function(player)
+        if not self._playerData[player.Name] then
+            self._playerData[player.Name] = PlayerData.new(self, player)
         end
     end)
 
-    -- Handle players leaving
-    self:_connect(Players.PlayerRemoving, function(p)
-        local pd = self._playerTable[p.Name]
-        if pd and type(pd.Destroy) == "function" then 
-            pd:Destroy() 
+    self._conns:Connect(Players.PlayerRemoving, function(player)
+        local pd = self._playerData[player.Name]
+        if pd then
+            pd:Destroy()
+            self._playerData[player.Name] = nil
         end
-        self._playerTable[p.Name] = nil
     end)
-
-    -- Update mobile button UI
-    if self._settings.MOBILE_BUTTON and ContextActionUtility and type(ContextActionUtility.SetTitle) == "function" then
-        ContextActionUtility:SetTitle("LimbExtenderToggle", "On")
-    end
 end
 
-function LimbExtender:Stop()
+function GhostLimbExtender:Stop()
     if not self._running then return end
     self._running = false
 
-    self:_disconnectAll()
-
-    -- Destroy all player data and their ghosts
-    for _, pd in pairs(self._playerTable) do
-        if pd and type(pd.Destroy) == "function" then 
-            pd:Destroy() 
-        end
+    if self._toggleButton then
+        self._toggleButton.Text = "GHOST: OFF"
+        self._toggleButton.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     end
-    self._playerTable = {}
 
-    -- Update mobile button UI
-    if self._settings.MOBILE_BUTTON and ContextActionUtility and type(ContextActionUtility.SetTitle) == "function" then
-        ContextActionUtility:SetTitle("LimbExtenderToggle", "Off")
+    self._conns:DisconnectAll()
+
+    for _, pd in pairs(self._playerData) do
+        pd:Destroy()
     end
+    self._playerData = {}
 end
 
-function LimbExtender:Toggle()
+function GhostLimbExtender:Toggle()
     if self._running then
         self:Stop()
     else
@@ -437,51 +351,31 @@ function LimbExtender:Toggle()
     end
 end
 
-function LimbExtender:Restart()
-    local wasRunning = self._running
-    self:Stop()
-    if wasRunning then 
-        task.delay(0.3, function()
-            if not self._destroyed then
-                self:Start()
-            end
-        end)
-    end
-end
-
-function LimbExtender:Destroy()
+function GhostLimbExtender:Destroy()
     if self._destroyed then return end
     self._destroyed = true
 
     self:Stop()
+    self._conns:Destroy()
 
-    -- Unbind key
-    if ContextActionUtility and type(ContextActionUtility.UnbindAction) == "function" then
-        pcall(function() ContextActionUtility:UnbindAction("LimbExtenderToggle") end)
+    if self._toggleButton then
+        self._toggleButton:Destroy()
+        self._toggleButton = nil
     end
 
-    -- Remove decoy folder
-    if decoyFolder then
-        pcall(function() decoyFolder:Destroy() end)
-        decoyFolder = nil
-    end
-
-    limbExtenderData._cleanup = nil
+    getgenv().GhostLimbExtender_Cleanup = nil
 end
 
-function LimbExtender:Set(key, value)
-    if self._settings[key] ~= value then
-        self._settings[key] = value
-        self:Restart()
-    end
-end
-
-function LimbExtender:Get(key) 
-    return self._settings[key] 
-end
-
-return setmetatable({}, { 
-    __call = function(_, userSettings) 
-        return LimbExtender.new(userSettings) 
-    end 
+-- ============================================
+-- LAUNCH
+-- ============================================
+local extender = GhostLimbExtender.new({
+    TOGGLE_KEY = "L",
+    TARGET_LIMB = "HumanoidRootPart",
+    LIMB_SIZE = 15,
+    LIMB_TRANSPARENCY = 0.8,
+    TEAM_CHECK = true,
+    USE_HIGHLIGHT = true,
 })
+
+print("[GHOST LIMB EXTENDER] Loaded. Press L or click button to toggle.")
